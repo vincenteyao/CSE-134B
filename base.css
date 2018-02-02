@@ -1,24 +1,38 @@
+
+body {
+  margin:0;
+}
+
 .navbtn ul {
   list-style-type: none;
   margin:0;
   padding:0;
+  width:15%;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
 }
 
 .navbtn li a {
   display: block;
-  width:100px;
-  padding: 8px 16px;
-  background-color: #dddddd;
+  padding: 12px 16px;
+  color: #000;
   text-decoration: none;
-  color: black;
 }
 
 .navbtn .active {
-  background-color: #4CAF50;
+  background-color: #77bdf1;
   color: white;
 }
 
 li a:hover:not(.active) {
     background-color: #555;
     color: white;
+}
+
+.landing-bdy {
+  margin-left:15%;
+  padding:1px 16px;
+  height:1000px;
 }
