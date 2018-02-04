@@ -211,20 +211,17 @@ input[type=chat] {
   height:100%;
   margin-left:15%;
   width:85%;
-  border:1px solid black;
 }
 .messages {
   padding:1% 3%;
   height:100vh;
   width: 95%;
-  border:1px solid black;
 }
 
 .chat {
   padding:1% 3%;
   height:100vh;
   width: 95%;
-  border:2px solid black;
   float: right;
 }
 
