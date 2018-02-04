@@ -91,7 +91,8 @@ ul.sidenav li a:hover:not(.active) {
         float: left;
         padding: 15px;
     }
-    div.content {margin-left: 0;}
+    div.landing-bdy {margin-left: 0;}
+    div.messages-container {margin-left: 0;}
 }
 
 @media screen and (max-width: 600px) {
