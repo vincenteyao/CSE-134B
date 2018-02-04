@@ -14,98 +14,108 @@
 </head>
 <body>
 
-<h1>H&H</h1>
-
-<div id="login_but">
-  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
-  <button onclick="document.getElementById('id00').style.display='block'" style="width:auto;" class="registerbtn">Register</button>
+<div id="bg">
+  <img src="./images/geisel.jpg" alt="">
 </div>
 
-<div id="id00" class="modal">
+<div class="login">
+  <h1 class="description">H&H</h1>
+
+  <div class="login_but">
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+  </div>
+
+  <div class="login_but">
+    <button onclick="document.getElementById('id00').style.display='block'" style="width:auto;" class="registerbtn">Register</button>
+  </div>
   
-  <form class="modal-content animate" action="/action_page.php">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id00').style.display='none'" class="close" title="Close Modal">&times;</span>
-    </div>
 
-    <div class="container">
-      <label><b>First Name</b></label>
-      <input type="text" placeholder="Enter First Name" name="nfame" required>
-
-      <label><b>Last Name</b></label>
-      <input type="text" placeholder="Enter Last Name" name="lname" required>
-
-      <label><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required>
-
-      <label><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-
-      <label><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-
-      <label><b>Confirm Password</b></label>
-      <input type="password" placeholder="Confirm Password" name="psw-repeat" required>
-        
-      <button type="submit">Register</button>
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id00').style.display='none'" class="cancelbtn">Cancel</button>
-    </div>
-  </form>
-</div>
-
-<div id="id01" class="modal">
+  <div id="id00" class="modal">
   
-  <form class="modal-content animate" action="./landing.html">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-    </div>
+    <form class="modal-content animate" action="/action_page.php">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('id00').style.display='none'" class="close" title="Close Modal">&times;</span>
+      </div>
 
-    <div class="container">
-      <label><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <div class="container">
+        <label><b>First Name</b></label>
+        <input type="text" placeholder="Enter First Name" name="nfame" required>
 
-      <label><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+        <label><b>Last Name</b></label>
+        <input type="text" placeholder="Enter Last Name" name="lname" required>
+
+        <label><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+
+        <label><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
+
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+        <label><b>Confirm Password</b></label>
+        <input type="password" placeholder="Confirm Password" name="psw-repeat" required>
         
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked"> Remember me
-      </label>
-    </div>
+        <button type="submit">Register</button>
+      </div>
 
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-  </form>
-</div>
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('id00').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
 
-<script>
+  <div id="id01" class="modal">
+  
+    <form class="modal-content animate" action="./landing.html">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      </div>
+
+      <div class="container">
+        <label><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
+
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+        
+        <button type="submit">Login</button>
+        <label>
+          <input type="checkbox" checked="checked"> Remember me
+        </label>
+      </div>
+
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+      </div>
+    </form>
+  </div>
+
+  <script>
 // Get the modal
-var modal0 = document.getElementById('id00');
+  var modal0 = document.getElementById('id00');
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+  window.onclick = function(event) {
     if (event.target == modal0) {
         modal0.style.display = "none";
     }
-}
-</script>
+  }
+  </script>
 
-<script>
-var modal1 = document.getElementById('id01');
+  <script>
+  var modal1 = document.getElementById('id01');
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+  window.onclick = function(event) {
     if (event.target == modal1) {
         modal1.style.display = "none";
     }
-}
-</script>
+  }
+  </script>
 
-<p>Housing & Hospitality provides a convenient platform for finding and managing housemates and landlords.</p>
+  <p class="description">Housing & Hospitality provides a convenient platform for finding and managing housemates and landlords.</p>
+</div>
 
 </html>
