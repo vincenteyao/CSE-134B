@@ -242,3 +242,11 @@ ul.curr-messages {
   height: 100%;
   overflow: auto;
 }
+
+.add-button {
+  margin-top: 20px;
+}
+
+.view-button{
+  
+}
