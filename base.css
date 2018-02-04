@@ -109,18 +109,24 @@ input[type=text]:focus {
 } 
 
 .chores-table th, td {
-   border: 1px solid black;
-   height: 50px;
+   border: 1px solid #d6ebfa;
+   height: 35px;
    font-size: 20px;
+   padding: 8px;
 }
 
 .chores-table {
   width: 100%;
-  border:1px solid black;
+  border-collapse: collapse;
+  /*border:1px solid black;*/
 }
 
 .chores-table th {
   text-align: left;
+}
+
+.chores-table tr:nth-child(even) {
+    background-color: #d6ebfa;
 }
 
 .payment-table th, td {
