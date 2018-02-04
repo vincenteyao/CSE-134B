@@ -216,14 +216,14 @@ input[type=chat] {
 .messages {
   padding:1% 3%;
   height:100vh;
-  width: 19%;
+  width: 95%;
   border:1px solid black;
 }
 
 .chat {
   padding:1% 3%;
   height:100vh;
-  width: 69%;
+  width: 95%;
   border:2px solid black;
   float: right;
 }
@@ -237,6 +237,7 @@ input[type=chat] {
     margin: 5px 0;
     width: 95%;
     float:center;
+    cursor: pointer;
 }
 
 /* Darker chat container */
