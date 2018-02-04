@@ -94,3 +94,18 @@ input[type=text]:focus {
 .chores-table th {
   text-align: left;
 }
+
+.payment-table th, td {
+   border: 1px solid black;
+   height: 50px;
+   font-size: 20px;
+}
+
+.payment-table {
+  width: 100%;
+  border:1px solid black;
+}
+
+.payment-table th {
+  text-align: left;
+}
