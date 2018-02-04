@@ -277,8 +277,6 @@ input[type=text] .chat{
     float: left;
     color: #999;
 }
-    background-color: #d6ebfa;
-}
 
 ul.curr-messages {
   list-style-type: none;
