@@ -46,13 +46,20 @@ li a:hover:not(.active) {
   cursor: pointer;
 }
 
-.pf-pic {
+.pf-thumbnail {
   border:1px solid black;
   float: left;
   height: 30%;
   width: 30%;
   text-align: center;
 }
+
+.profile-pic {
+  height: 30%;
+  width: 30%;
+  border:1px solid black;
+}
+
 
 input[type=text] {
     width: 130px;
