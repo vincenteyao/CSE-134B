@@ -141,7 +141,11 @@ input[type=text]:focus {
 }
 
 .payment-table tr:nth-child(even) {
+<<<<<<< HEAD
     background-color: #d6ebfa;
+}
+=======
+    background-color: #dddddd;
 }
 
 /* Chat containers */
@@ -193,5 +197,4 @@ input[type=text]:focus {
     float: left;
     color: #999;
 }
-    background-color: #d6ebfa;
-}
+>>>>>>> 8f9ffa084add1971488b3cb39210e68c0cf54b22
