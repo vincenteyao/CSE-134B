@@ -57,6 +57,12 @@ ul.sidenav li a:hover:not(.active) {
   height:1000px;
 }
 
+.messages {
+  margin-left:15%;
+  padding:1px 16px;
+  height:1000px;
+}
+
 .summary {
   border:1px solid black;
   width: 40%;
