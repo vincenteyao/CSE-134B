@@ -79,3 +79,18 @@ input[type=text] {
 input[type=text]:focus {
     width: 100%;
 } 
+
+.chores-table th, td {
+   border: 1px solid black;
+   height: 50px;
+   font-size: 20px;
+}
+
+.chores-table {
+  width: 100%;
+  border:1px solid black;
+}
+
+.chores-table th {
+  text-align: left;
+}
