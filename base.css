@@ -183,6 +183,26 @@ input[type=text]{
     background-color: #d6ebfa;
 }
 
+.listings-table th, td {
+   border: 1px solid #d6ebfa;
+   height: 35px;
+   font-size: 20px;
+   padding: 8px;
+}
+
+.listings-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.listings-table th {
+  text-align: left;
+}
+
+.listings-table tr:nth-child(even) {
+    background-color: #d6ebfa;
+}
+
 .payment-table th, td {
    border: 1px solid #d6ebfa;
    height: 35px;
@@ -314,6 +334,19 @@ ul.curr-messages {
 }
 
 .table-complete-button{
+    background-color: #5db761;
+    border: none;
+    color: white;
+    padding: 15px 26px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.table-delete-button{
     background-color: #5db761;
     border: none;
     color: white;

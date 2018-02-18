@@ -25,27 +25,27 @@
   </div>
 
   <div class="landing-bdy">
-    <h1>Chores</h1>
+    <h1>Listings</h1>
     <p id="counter"></p>
 
-   <table class="chores-table">
+   <table class="listings-table">
     <tr>
       <th></th>
-      <th>Task Name</th> 
-      <th>Person</th>
+      <th>Listings</th> 
+      <th>Resident contact</th>
     </tr>
-    <tbody id="chores">
+    <tbody id="listings">
 
     </tbody>
   </table>
 
-  <button class="add-button" onclick="OpenAdd()">Add chore</button>
+  <button class="add-button" onclick="OpenAdd()">Add Listing</button>
   <!--<button class="view-button">View completed</button>-->
 
   <div id="add_spoiler" role="aria-hidden">
   <form action="javascript:void(0);" method="POST" onsubmit="app.Add()"> 
-   <input type="text" id="add-chore" placeholder="New chore">
-   <input type="text" id="add-person" placeholder="Person responsible">
+   <input type="text" id="add-listing" placeholder="New Listing">
+   <input type="text" id="add-resident" placeholder="Resident Contact">
    <input type="submit" value="Add">
    <a onclick="CloseAddInput()" aria-label="Close">&#10006;</a>
   </form>
@@ -53,8 +53,8 @@
 
   <div id="spoiler" role="aria-hidden">
    <form action="javascript:void(0);" method="POST" id="saveEdit">
-   <input type="text" id="edit-chore">
-   <input type="text" id="edit-person">
+   <input type="text" id="edit-listing">
+   <input type="text" id="edit-resident">
    <input type="submit" value="Edit" /> <a onclick="CloseEditInput()" aria-label="Close">&#10006;</a>
    </form>
   </div>
@@ -62,16 +62,16 @@
 
 <script>
     var app = new function() {
-      this.el = document.getElementById('chores');
-      this.chores = [['','Clean bathroom','Vincent'], ['', 'Take out trash', 'George'], ['', 'Vacuum floor', 'Jimmy']];
+      this.el = document.getElementById('listings');
+      this.listings = [['','#212 La Scala','Vincent'], ['', '2018 Governer Drive', 'George'], ['', '420 Lebon Drive', 'Jimmy']];
 
       this.Count = function(data) {
         var el = document.getElementById('counter');
-        var name = 'chore';
+        var name = 'listing';
 
         if(data) {
           if (data > 1) {
-            name = 'chores';
+            name = 'listings';
           }
           el.innerHTML = data + ' ' + name;
         }
@@ -83,54 +83,54 @@
       this.FetchAll = function() {
         var data = '';
 
-        if (this.chores.length > 0) {
-          for (i = 0; i < this.chores.length; i++) {
+        if (this.listings.length > 0) {
+          for (i = 0; i < this.listings.length; i++) {
             data += '<tr>';
-            data += '<td><button class="table-complete-button" onclick="app.Delete(' + i + ')">Complete</button><button class="table-edit-button" onclick="app.Edit(' + i + ')">Edit</button></td>';
-            data += '<td>' + this.chores[i][1] + '</td>';
-            data += '<td>' + this.chores[i][2] + '</td>';
+            data += '<td><button class="table-delete-button" onclick="app.Delete(' + i + ')">Delete</button><button class="table-edit-button" onclick="app.Edit(' + i + ')">Edit</button></td>';
+            data += '<td>' + this.listings[i][1] + '</td>';
+            data += '<td>' + this.listings[i][2] + '</td>';
             data += '</tr>';
           }
         }
 
-        this.Count(this.chores.length);
+        this.Count(this.listings.length);
         return this.el.innerHTML = data;
       };
 
       this.Add = function () {
-        el = document.getElementById('add-chore');
-        el_person = document.getElementById('add-person');
+        el = document.getElementById('add-listing');
+        el_resident = document.getElementById('add-resident');
         //Get the value
-        var chore = el.value;
-        var person = el_person.value;
+        var listing = el.value;
+        var resident = el_resident.value;
 
-        if(chore && person) {
+        if(listing && resident) {
           //Add the new value
-          this.chores.push(['', chore.trim(), person.trim()]);
+          this.listings.push(['', listing.trim(), resident.trim()]);
           // Reset input value
           el.value = '';
-          el_person.value = '';
+          el_resident.value = '';
           // Dislay the new list
           this.FetchAll();
         }
       };
 
       this.Edit = function (item) {
-        var el = document.getElementById('edit-chore');
-        var el_person = document.getElementById('edit-person');
+        var el = document.getElementById('edit-listing');
+        var el_resident = document.getElementById('edit-resident');
         // Display value in the field
-        el.value = this.chores[item][1];
-        el_person.value = this.chores[item][2];
+        el.value = this.listings[item][1];
+        el_resident.value = this.listings[item][2];
         // Display fields
         document.getElementById('spoiler').style.display = 'block';
         self = this;
         document.getElementById('saveEdit').onsubmit = function() {
           // Get value
-          var chore = el.value;
-          var person = el_person.value;
-          if (chore && person) {
+          var listing = el.value;
+          var resident = el_resident.value;
+          if (listing && resident) {
             // Edit value
-            self.chores.splice(item, 1, ['', chore.trim(), person.trim()]);
+            self.listings.splice(item, 1, ['', listing.trim(), resident.trim()]);
             // Display the new list
             self.FetchAll();
             // Hide fields
@@ -141,7 +141,7 @@
 
       this.Delete = function (item) {
         // Delete the current row
-        this.chores.splice(item, 1);
+        this.listings.splice(item, 1);
         // Display the new list
         this.FetchAll();
       };
