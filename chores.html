@@ -40,7 +40,7 @@
   </table>
 
   <button class="add-button" onclick="OpenAdd()">Add chore</button>
-  <button class="view-button">View completed</button>
+  <!--<button class="view-button">View completed</button>-->
 
   <div id="add_spoiler" role="aria-hidden">
   <form action="javascript:void(0);" method="POST" onsubmit="app.Add()"> 
@@ -134,7 +134,7 @@
             // Display the new list
             self.FetchAll();
             // Hide fields
-            CloseInput();
+            CloseEditInput();
           }
         }
       };

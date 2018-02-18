@@ -27,38 +27,183 @@
 
   <div class="landing-bdy">
     <h1>Payments</h1>
+    <p id="counter"></p>
+
     <table class="payment-table">
     <tr>
-      <th>Paid?</th>
+      <th></th>
+      <th>Paid</th>
       <th>Cost</th>
       <th>Description</th> 
       <th>Due Date</th>
       <th>People</th>
     </tr>
-    <tr>
-      <td>Yes</td>
-      <th>$900</th>
-      <td>Rent</td> 
-      <td>2/1/2018</td>
-      <td>John, Jason</td>
-    </tr>
-    <tr>
-      <td>No</td>
-      <th>$30</th>
-      <td>Electricity and Water</td> 
-      <td>2/8/2018</td>
-      <td>Jack, Joe</td>
-    </tr>
-    <tr>
-      <td>No</td>
-      <th>$34.13</th>
-      <td>Groceries</td> 
-      <td>2/14/2018</td>
-      <td>Joe</td>
-    </tr>
+    <tbody id="bills">
+    </tbody>
   </table>
 
-  <button class="add-button">Add payment</button>
-  <button class="view-button">View completed</button>
+  <button class="add-button" onclick="OpenAdd()">Add payment</button>
+  <!--<button class="view-button">View completed</button>-->
+  
+    <div id="add_spoiler" role="aria-hidden">
+    <form action="javascript:void(0);" method="POST" onsubmit="app.Add()"> 
+     <input type="text" id="add-cost" placeholder="Cost">
+     <input type="text" id="add-desc" placeholder="Description">
+     <input type="text" id="add-date" placeholder="Due date">
+     <input type="text" id="add-person" placeholder="Person responsible">
+     <input type="submit" value="Add">
+     <a onclick="CloseAddInput()" aria-label="Close">&#10006;</a>
+    </form>
+    </div>
+
+    <div id="spoiler" role="aria-hidden">
+     <form action="javascript:void(0);" method="POST" id="saveEdit">
+     <input type="text" id="edit-paid">
+     <input type="text" id="edit-cost">
+     <input type="text" id="edit-desc">
+     <input type="text" id="edit-date">
+     <input type="text" id="edit-person">
+     <input type="submit" value="Edit" /> <a onclick="CloseEditInput()" aria-label="Close">&#10006;</a>
+     </form>
+    </div>
+
   </div>
+
+  <script>
+    var app = new function() {
+      this.el = document.getElementById('bills');
+      this.bills = [['','Yes', '$900','Rent', '2/1/2018', 'Vincent, George'], ['', 'No', '$30','Electricity and Water', '2/8/2018', 'Vincent'], ['', 'No', '$34.13','Groceries', '2/14/2018', 'Jimmy']];
+
+      this.Count = function(data) {
+        var el = document.getElementById('counter');
+        var name = 'bill';
+
+        if(data) {
+          if (data > 1) {
+            name = 'bills';
+          }
+          el.innerHTML = data + ' ' + name;
+        }
+        else {
+          el.innerHTML = "No " + name;
+        }
+      };
+
+      this.FetchAll = function() {
+        var data = '';
+
+        if (this.bills.length > 0) {
+          for (i = 0; i < this.bills.length; i++) {
+            data += '<tr>';
+            data += '<td><button class="table-complete-button" onclick="app.Complete(' + i + ')">Complete</button><button class="table-remove-button" onclick="app.Delete(' + i + ')">Remove</button><button class="table-edit-button" onclick="app.Edit(' + i + ')">Edit</button></td>';
+            data += '<td>' + this.bills[i][1] + '</td>';
+            data += '<td>' + this.bills[i][2] + '</td>';
+            data += '<td>' + this.bills[i][3] + '</td>';
+            data += '<td>' + this.bills[i][4] + '</td>';
+            data += '<td>' + this.bills[i][5] + '</td>';
+            data += '</tr>';
+          }
+        }
+
+        this.Count(this.bills.length);
+        return this.el.innerHTML = data;
+      };
+
+      this.Add = function () {
+        el_cost = document.getElementById('add-cost');
+        el_desc = document.getElementById('add-desc');
+        el_date = document.getElementById('add-date');
+        el_person = document.getElementById('add-person');
+        //Get the value
+        var cost = el_cost.value;
+        var desc = el_desc.value;
+        var date = el_date.value;
+        var person = el_person.value;
+
+        if(cost && desc && date && person) {
+          //Add the new value
+          this.bills.push(['', 'No', cost.trim(), desc.trim(), date.trim(), person.trim()]);
+          // Reset input value
+          el_cost.value = '';
+          el_desc.value = '';
+          el_date.value = '';
+          el_person.value = '';
+          // Dislay the new list
+          this.FetchAll();
+        }
+      };
+
+      this.Edit = function (item) {
+        el_paid = document.getElementById('edit-paid');
+        el_cost = document.getElementById('edit-cost');
+        el_desc = document.getElementById('edit-desc');
+        el_date = document.getElementById('edit-date');
+        el_person = document.getElementById('edit-person');
+        // Display value in the field
+        el_paid.value = this.bills[item][1];
+        el_cost.value = this.bills[item][2];
+        el_desc.value = this.bills[item][3];
+        el_date.value = this.bills[item][4];
+        el_person.value = this.bills[item][5];
+        // Display fields
+        document.getElementById('spoiler').style.display = 'block';
+        self = this;
+        document.getElementById('saveEdit').onsubmit = function() {
+          // Get value
+          var paid = el_paid.value;
+          var cost = el_cost.value;
+          var desc = el_desc.value;
+          var date = el_date.value;
+          var person = el_person.value;
+          if (paid && cost && desc && date && person) {
+            // Edit value
+            self.bills.splice(item, 1, ['', paid.trim(), cost.trim(), desc.trim(), date.trim(), person.trim()]);
+            // Display the new list
+            self.FetchAll();
+            // Hide fields
+            CloseEditInput();
+          }
+        }
+      };
+
+      this.Delete = function (item) {
+        // Delete the current row
+        this.bills.splice(item, 1);
+        // Display the new list
+        this.FetchAll();
+      };
+
+      this.Complete = function (item) {
+          // Get value
+          var paid = this.bills[item][1];
+          var cost = this.bills[item][2];
+          var desc = this.bills[item][3];
+          var date = this.bills[item][4];
+          var person = this.bills[item][5];
+          self = this;
+          if (paid && cost && desc && date && person) {
+            // Edit value
+            self.bills.splice(item, 1, ['', "Yes", cost.trim(), desc.trim(), date.trim(), person.trim()]);
+            // Display the new list
+            self.FetchAll();
+          }
+
+      };
+
+    };
+
+    app.FetchAll();
+
+    function CloseEditInput() {
+      document.getElementById('spoiler').style.display = 'none';
+    };
+
+    function CloseAddInput() {
+      document.getElementById('add_spoiler').style.display = 'none';
+    };
+
+    function OpenAdd() {
+      document.getElementById('add_spoiler').style.display = 'block';
+    };
+  </script>
 </body>
