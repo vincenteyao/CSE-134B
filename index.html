@@ -100,7 +100,7 @@
   
     <form class="modal-content animate" action="./lllanding.html">
       <div class="imgcontainer">
-        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
       </div>
 
       <div class="container">
@@ -117,7 +117,7 @@
       </div>
 
       <div class="container" style="background-color:#f1f1f1">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
         <span class="psw">Forgot <a href="#">password?</a></span>
       </div>
     </form>
@@ -136,6 +136,19 @@
   </script>
 
   <script>
+// Get the modal
+  var modal2 = document.getElementById('id02');
+
+// When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal2) {
+        modal2.style.display = "none";
+    }
+  }
+  </script>
+
+  <script>
+
   var modal1 = document.getElementById('id01');
 
 // When the user clicks anywhere outside of the modal, close it
