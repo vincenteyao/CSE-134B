@@ -227,9 +227,9 @@ input[type=text]{
     border: 2px solid #dedede;
     background-color: #f1f1f1;
     border-radius: 5px;
-    padding: 5px;
+    padding: 2px;
     margin: 5px 0;
-    width: 95%;
+    width: 100%;
     float:center;
     cursor: pointer;
 }

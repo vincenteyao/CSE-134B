@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Housing tool; search for housemates">
+  <meta name="keywords" content="Housing, Housemates">
+  <meta name="author" content="Jimmy Jiang, George Ku, Wensen Yao">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H&H Chores</title>  
+  <link rel="stylesheet" type="text/css" href="base.css">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+  <div class="navbtn">
+    <ul class="sidenav">
+      <li><a href="./lllanding.html">Home</a></li>
+      <li><a href="./llsearch.html">Search</a></li>
+      <li><a href="./llmessenger.html">Messenger</a></li>
+      <li><a href="./llpayment.html">Payment</a></li>
+      <li><a href="./llprofile.html">My Profile</a></li>
+      <li><a class="active" href="#">My Listings</a></li>
+      <li><a href="./index.html">Log Out</a></li>
+    </ul>
+  </div>
+
+  <div class="landing-bdy">
+    <h1>Chores</h1>
+    <p id="counter"></p>
+
+   <table class="chores-table">
+    <tr>
+      <th></th>
+      <th>Task Name</th> 
+      <th>Person</th>
+    </tr>
+    <tbody id="chores">
+
+    </tbody>
+  </table>
+
+  <button class="add-button" onclick="OpenAdd()">Add chore</button>
+  <!--<button class="view-button">View completed</button>-->
+
+  <div id="add_spoiler" role="aria-hidden">
+  <form action="javascript:void(0);" method="POST" onsubmit="app.Add()"> 
+   <input type="text" id="add-chore" placeholder="New chore">
+   <input type="text" id="add-person" placeholder="Person responsible">
+   <input type="submit" value="Add">
+   <a onclick="CloseAddInput()" aria-label="Close">&#10006;</a>
+  </form>
+  </div>
+
+  <div id="spoiler" role="aria-hidden">
+   <form action="javascript:void(0);" method="POST" id="saveEdit">
+   <input type="text" id="edit-chore">
+   <input type="text" id="edit-person">
+   <input type="submit" value="Edit" /> <a onclick="CloseEditInput()" aria-label="Close">&#10006;</a>
+   </form>
+  </div>
+  </div>
+
+<script>
+    var app = new function() {
+      this.el = document.getElementById('chores');
+      this.chores = [['','Clean bathroom','Vincent'], ['', 'Take out trash', 'George'], ['', 'Vacuum floor', 'Jimmy']];
+
+      this.Count = function(data) {
+        var el = document.getElementById('counter');
+        var name = 'chore';
+
+        if(data) {
+          if (data > 1) {
+            name = 'chores';
+          }
+          el.innerHTML = data + ' ' + name;
+        }
+        else {
+          el.innerHTML = "No " + name;
+        }
+      };
+
+      this.FetchAll = function() {
+        var data = '';
+
+        if (this.chores.length > 0) {
+          for (i = 0; i < this.chores.length; i++) {
+            data += '<tr>';
+            data += '<td><button class="table-complete-button" onclick="app.Delete(' + i + ')">Complete</button><button class="table-edit-button" onclick="app.Edit(' + i + ')">Edit</button></td>';
+            data += '<td>' + this.chores[i][1] + '</td>';
+            data += '<td>' + this.chores[i][2] + '</td>';
+            data += '</tr>';
+          }
+        }
+
+        this.Count(this.chores.length);
+        return this.el.innerHTML = data;
+      };
+
+      this.Add = function () {
+        el = document.getElementById('add-chore');
+        el_person = document.getElementById('add-person');
+        //Get the value
+        var chore = el.value;
+        var person = el_person.value;
+
+        if(chore && person) {
+          //Add the new value
+          this.chores.push(['', chore.trim(), person.trim()]);
+          // Reset input value
+          el.value = '';
+          el_person.value = '';
+          // Dislay the new list
+          this.FetchAll();
+        }
+      };
+
+      this.Edit = function (item) {
+        var el = document.getElementById('edit-chore');
+        var el_person = document.getElementById('edit-person');
+        // Display value in the field
+        el.value = this.chores[item][1];
+        el_person.value = this.chores[item][2];
+        // Display fields
+        document.getElementById('spoiler').style.display = 'block';
+        self = this;
+        document.getElementById('saveEdit').onsubmit = function() {
+          // Get value
+          var chore = el.value;
+          var person = el_person.value;
+          if (chore && person) {
+            // Edit value
+            self.chores.splice(item, 1, ['', chore.trim(), person.trim()]);
+            // Display the new list
+            self.FetchAll();
+            // Hide fields
+            CloseEditInput();
+          }
+        }
+      };
+
+      this.Delete = function (item) {
+        // Delete the current row
+        this.chores.splice(item, 1);
+        // Display the new list
+        this.FetchAll();
+      };
+
+    };
+
+    app.FetchAll();
+
+    function CloseEditInput() {
+      document.getElementById('spoiler').style.display = 'none';
+    };
+
+    function CloseAddInput() {
+      document.getElementById('add_spoiler').style.display = 'none';
+    };
+
+    function OpenAdd() {
+      document.getElementById('add_spoiler').style.display = 'block';
+    };
+  </script>
+</body>
