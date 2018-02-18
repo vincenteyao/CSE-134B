@@ -29,8 +29,17 @@
     <div class="messages">
       <h1>Messenger</h1>
       <div class="searchbar">
-        <input type="search" placeholder="Search for name" name="search"/>
+        <input type="search" id="myInput" onKeyUp="myFunction()" placeholder="Search for name" name="search"/>
       </div>
+      <ul id="myUL">
+        <li><a href="./chat.html"><img src="./images/gary.jpg" alt="Profile">aGary</a></li>
+        <li><a href="./chat.html"><img src="./images/gary.jpg" alt="Profile">bGary</a></li>
+        <li><a href="./chat.html"><img src="./images/gary.jpg" alt="Profile">cGary</a></li>
+        <li><a href="./chat.html"><img src="./images/gary.jpg" alt="Profile">dGary</a></li>
+        <li><a href="./chat.html"><img src="./images/gary.jpg" alt="Profile">eGary</a></li>
+        <li><a href="./chat.html"><img src="./images/gary.jpg" alt="Profile">fGary</a></li>
+      </ul>
+      <!--
       <div class="container" onclick="location.href='./chat.html'">
         <img src="./images/gary.jpg" alt="Profile">
         <p>Gary Gillespie</p>
@@ -59,7 +68,29 @@
         <img src="./images/gary.jpg" alt="Profile">
         <p>Daddy Gillespie</p>
       </div>
+    -->
     </div>
-
   </div>
+
+  <script>
+  function myFunction() {
+      // Declare variables
+      var input, filter, ul, li, a, i;
+      input = document.getElementById('myInput');
+      filter = input.value.toUpperCase();
+      ul = document.getElementById("myUL");
+      li = ul.getElementsByTagName('li');
+
+      // Loop through all list items, and hide those who don't match the search query
+      for (i = 0; i < li.length; i++) {
+          a = li[i].getElementsByTagName("a")[0];
+          if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              li[i].style.display = "";
+          } else {
+              li[i].style.display = "none";
+          }
+      }
+  }
+  </script>
+
 </body>
