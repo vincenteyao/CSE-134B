@@ -95,7 +95,12 @@
         if (this.bills.length > 0) {
           for (i = 0; i < this.bills.length; i++) {
             data += '<tr>';
-            data += '<td><button class="table-complete-button" onclick="app.Complete(' + i + ')">Complete</button><button class="table-remove-button" onclick="app.Delete(' + i + ')">Remove</button><button class="table-edit-button" onclick="app.Edit(' + i + ')">Edit</button></td>';
+            if(this.bills[i][1] == 'Yes') {
+              data += '<td><button class="table-uncomplete-button" onclick="app.Uncomplete(' + i + ')">Uncomplete</button><button class="table-edit-button" onclick="app.Edit(' + i + ')">Edit</button><button class="table-remove-button" onclick="app.Delete(' + i + ')">Remove</button></td>';
+            }
+            else {
+              data += '<td><button class="table-complete-button" onclick="app.Complete(' + i + ')">Complete</button><button class="table-edit-button" onclick="app.Edit(' + i + ')">Edit</button><button class="table-remove-button" onclick="app.Delete(' + i + ')">Remove</button></td>';
+            }
             data += '<td>' + this.bills[i][1] + '</td>';
             data += '<td>' + this.bills[i][2] + '</td>';
             data += '<td>' + this.bills[i][3] + '</td>';
@@ -189,6 +194,24 @@
           }
 
       };
+
+      this.Uncomplete = function (item) {
+          // Get value
+          var paid = this.bills[item][1];
+          var cost = this.bills[item][2];
+          var desc = this.bills[item][3];
+          var date = this.bills[item][4];
+          var person = this.bills[item][5];
+          self = this;
+          if (paid && cost && desc && date && person) {
+            // Edit value
+            self.bills.splice(item, 1, ['', "No", cost.trim(), desc.trim(), date.trim(), person.trim()]);
+            // Display the new list
+            self.FetchAll();
+          }
+
+      };
+
 
     };
 
